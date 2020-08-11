@@ -1,5 +1,6 @@
 <?php
 
+use App\Topicality;
 use Illuminate\Database\Seeder;
 
 class TopicalityTableSeeder extends Seeder
@@ -11,6 +12,6 @@ class TopicalityTableSeeder extends Seeder
      */
     public function run()
     {
-        $this->call(TopicalityTableSeeder::class);
+        factory(Topicality::class, 10)->create();
     }
 }
