@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\Topicality as ResourcesTopicality;
 use App\Topicality;
 use Illuminate\Http\Request;
 
@@ -42,7 +43,7 @@ class TopicalityController extends Controller
      */
     public function show(Topicality $topicality)
     {
-        return $topicality;
+        return new ResourcesTopicality($topicality);
     }
 
     /**
