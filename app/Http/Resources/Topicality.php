@@ -16,7 +16,7 @@ class Topicality extends JsonResource
     {
         return [
             'title' => 'Actuality title : ' . $this->title,
-            'title' => substr($this->content, 0, 10) . '...',
+            'content' => substr($this->content, 0, 10) . '...',
         ];
     }
 }
