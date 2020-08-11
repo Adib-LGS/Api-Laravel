@@ -14,7 +14,7 @@ class TopicalityController extends Controller
      */
     public function index()
     {
-        $topicalities = Topicality::all();
+        $topicalities = Topicality::orderByDesc('created_at')->get();
 
         return $topicalities->toJson(JSON_PRETTY_PRINT);
     }
@@ -27,7 +27,11 @@ class TopicalityController extends Controller
      */
     public function store(Request $request)
     {
-        Topicality::create($request->all());
+        if(Topicality::create($request->all())){
+            return response()->json([
+                'succes' => 'Created Succesfully',
+            ], 200);
+        }
     }
 
     /**
@@ -38,7 +42,7 @@ class TopicalityController extends Controller
      */
     public function show(Topicality $topicality)
     {
-        //
+        return $topicality;
     }
 
     /**
@@ -50,7 +54,11 @@ class TopicalityController extends Controller
      */
     public function update(Request $request, Topicality $topicality)
     {
-        //
+        if($topicality->update($request->all())){
+            return response()->json([
+                'succes' => 'Updated Succesfully',
+            ], 200);
+        }
     }
 
     /**
@@ -61,6 +69,6 @@ class TopicalityController extends Controller
      */
     public function destroy(Topicality $topicality)
     {
-        //
+        $topicality->delete();
     }
 }
